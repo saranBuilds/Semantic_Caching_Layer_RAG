@@ -1,0 +1,29 @@
+paper:
+    pdf_path: "data/attention_is_all_you_need.pdf"
+    chunks_cache: "data/chunks.json"
+    index_cache : "data/index.faiss"
+
+chunking:
+    chunk_size : 500
+    chunk_overlap : 50
+
+cache:
+    enabled: true
+    similarity_thresold: 0.95
+
+embeddings:
+    model_name: "Qwen/Qwen3-Embedding-0.6B"
+    device : "cuda"
+
+retrieval:
+    top_k : 4
+
+llm :
+    provider: "ollama"
+    model : "qwen3:4b"
+    base_url : "http://localhost:11434"
+    temperature : 0.2
+
+logging:
+    log_file : "logs/app.log"
+    
