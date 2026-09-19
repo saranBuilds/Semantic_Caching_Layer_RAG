@@ -1,7 +1,7 @@
-"""small shared helpers, mainly logging setup for now"""
-
+"""Small shared helpers, mainly logging setup for now."""
 import logging
 import os
+
 
 def get_logger(log_file: str) -> logging.Logger:
     os.makedirs(os.path.dirname(log_file), exist_ok=True)

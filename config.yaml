@@ -1,29 +1,28 @@
 paper:
-    pdf_path: "data/attention_is_all_you_need.pdf"
-    chunks_cache: "data/chunks.json"
-    index_cache : "data/index.faiss"
+  pdf_path: "data/attention_is_all_you_need.pdf"
+  chunks_cache: "data/chunks.json"
+  index_cache: "data/index.faiss"
 
 chunking:
-    chunk_size : 500
-    chunk_overlap : 50
-
-cache:
-    enabled: true
-    similarity_thresold: 0.95
+  chunk_size: 500       # characters
+  chunk_overlap: 50
 
 embeddings:
-    model_name: "Qwen/Qwen3-Embedding-0.6B"
-    device : "cuda"
+  model_name: "Qwen/Qwen3-Embedding-0.6B"
+  device: "cuda"        # falls back to cpu automatically if unavailable
 
 retrieval:
-    top_k : 4
+  top_k: 4
 
-llm :
-    provider: "ollama"
-    model : "qwen3:4b"
-    base_url : "http://localhost:11434"
-    temperature : 0.2
+llm:
+  provider: "ollama"
+  model: "qwen3:4b"
+  base_url: "http://localhost:11434"
+  temperature: 0.2
+
+cache:
+  enabled: true
+  similarity_threshold: 0.95   # will tune this in Phase 3
 
 logging:
-    log_file : "logs/app.log"
-    
+  log_file: "logs/app.log"

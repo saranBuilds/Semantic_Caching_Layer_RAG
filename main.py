@@ -94,8 +94,9 @@ def main():
         start = time.time()
         query_embedding = embedder.embed(query)
 
+        best_score = 0.0
         if cache_enabled:
-            cached = cache.get(query_embedding)
+            cached, best_score = cache.get(query_embedding)
             if cached:
                 total_latency = round(time.time() - start, 3)
                 print(f"\n[cache hit — similarity={cached['similarity']:.3f}]\n{cached['answer']}\n")
@@ -116,8 +117,8 @@ def main():
             cache.add(query_embedding, query, result["answer"])
 
         logger.info(
-            f"query={query!r} | CACHE_MISS | prompt_tokens={result['prompt_tokens']} "
-            f"| completion_tokens={result['completion_tokens']} "
+            f"query={query!r} | CACHE_MISS | best_similarity={best_score:.3f} "
+            f"| prompt_tokens={result['prompt_tokens']} | completion_tokens={result['completion_tokens']} "
             f"| llm_latency={result['latency_seconds']}s | total_latency={total_latency}s"
         )
 
