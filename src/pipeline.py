@@ -38,6 +38,9 @@ class RagPipeline:
 
         self.cache_enabled = cfg["cache"]["enabled"]
         self.cache = SemanticCache(similarity_threshold=cfg["cache"]["similarity_threshold"])
+        self.cache_path = cfg["cache"]["persist_path"]
+        self.cache.load(self.cache_path)
+        self.logger.info(f"Loaded {len(self.cache.entries)} cached entries from disk.") 
 
     def _build_or_load_index(self) -> VectorStore:
         chunks_cache = self.cfg["paper"]["chunks_cache"]
@@ -111,6 +114,7 @@ class RagPipeline:
 
         if self.cache_enabled:
             self.cache.add(query_embedding, query, result["answer"])
+            self.cache.save(self.cache_path)
 
         self.logger.info(
             f"query={query!r} | CACHE_MISS | best_similarity={best_score:.3f} "

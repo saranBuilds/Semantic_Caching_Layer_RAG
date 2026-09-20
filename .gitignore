@@ -6,3 +6,4 @@ data/*.pdf
 data/chunks.json
 data/index.faiss
 logs/*.log
+data/cache.pkl

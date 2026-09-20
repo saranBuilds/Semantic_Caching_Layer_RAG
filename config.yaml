@@ -23,6 +23,7 @@ llm:
 cache:
   enabled: true
   similarity_threshold: 0.95   # will tune this in Phase 3
+  persist_path: "data/cache.plk"
 
 logging:
   log_file: "logs/app.log"
